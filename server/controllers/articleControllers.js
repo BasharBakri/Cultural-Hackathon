@@ -1,4 +1,4 @@
-import Article from "./models/Article.js";
+import Article from "../models/Article.js";
 
 // POST FROM SCRAPER
 // ???
@@ -29,6 +29,7 @@ const postOneArticle = async (req, res, next) => {
 
 
 const getAllArticles = async (req, res, next) => {
+  //!get all articles that are isInHomePage: false
 
   try {
     const articles = await Article.find();
@@ -72,6 +73,7 @@ const getOneArticle = async (req, res, next) => {
 
 
 const updateOneArticle = async (req, res, next) => {
+  //! Only update the fields that are in the request body
   try {
     const article = await Article.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
