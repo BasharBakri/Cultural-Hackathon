@@ -5,8 +5,9 @@ function Root() {
   return (
     <>
     <Header/>
-    <div>Root</div> 
+    <div className="main">
     <Outlet/>
+    </div>
     </>
   )
 }

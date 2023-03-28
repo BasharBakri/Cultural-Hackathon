@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -9,9 +10,17 @@ import Home from "./pages/Home";
 import Admin from "./pages/admin";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Loading from './components/loading/Loading'
+
+export const AppContext=createContext()
 
 function App() {
-    const router = new createBrowserRouter([
+  const [playLoading,setPlayLoading]=useState(false)
+  const router=new createBrowserRouter([
+    {
+      path:'/',
+      element:<Root/>,
+      children:[
         {
             path: "/",
             element: <Root />,
@@ -35,11 +44,19 @@ function App() {
             ],
         },
     ]);
-    return (
-        <div className="App">
-            <RouterProvider router={router} />
-        </div>
-    );
+  return (
+    <div className="App">
+        <AppContext.Provider value={{
+          loading:{
+            play:()=>setPlayLoading(true),
+            pause:()=>setPlayLoading(false)
+          }
+        }}>
+          {playLoading&&<Loading/>}
+        <RouterProvider router={router}/>
+        </AppContext.Provider>
+    </div>
+  )
 }
 
 export default App;
