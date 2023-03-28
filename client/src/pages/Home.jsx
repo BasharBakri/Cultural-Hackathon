@@ -11,7 +11,7 @@ function Home() {
         appContext.loading.play()
        getArticles(cat).then((data)=>{
         setArticles(data)
-        // appContext.loading.pause()
+        appContext.loading.pause()
        })
     }
     useEffect(()=>{
