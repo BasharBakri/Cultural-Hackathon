@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-function Article({article}) {
+function Article({article,isAdmin}) {
   return (
     <div className="article">
         <div className="detials">
@@ -11,6 +11,7 @@ function Article({article}) {
         <h3>Answer:{article.answer}</h3>
         <h3>Author:{article.author}</h3>
         <h3>Source:{article.source}</h3>
+        <button>Active:No</button>
         </div>
         <div style={{backgroundImage:'url("/new.jpg")'}} className="image"></div>
     </div>
