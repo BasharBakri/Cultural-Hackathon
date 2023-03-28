@@ -33,7 +33,7 @@ const performScraping = async () => {
         websiteName: websiteName,
         articleURL: articleURL,
         title: title.replace(/(\r\n|\n|\r|\t)/gm, ""),
-        desc: desc.replace(/(\r\n|\n|\r|\t)/gm, ""),
+        description: desc.replace(/(\r\n|\n|\r|\t)/gm, ""),
         author: author.replace(/(\r\n|\n|\r|\t|By|)/gm, "").slice(1),
         date: date,
         imageUrl: imageURL,
@@ -46,4 +46,4 @@ const performScraping = async () => {
   return articles;
 };
 
-performScraping();
+export default performScraping
