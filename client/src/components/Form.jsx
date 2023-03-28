@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useInput } from "../hooks/useInput";
 import useSubmit from "../hooks/useSubmit";
-
+import { logInUser, registerUser } from "../utils/users.mjs";
+import { LoginContext } from "../contexts/LoginContext";
 import "./styles/Form.style.css";
 
 const Form = ({ type }) => {
+    const { logIn } = useContext(LoginContext);
     const [firstName, setFirstName] = useInput("");
     const [lastName, setLastName] = useInput("");
     const [username, setUsername] = useInput("");
@@ -16,6 +18,21 @@ const Form = ({ type }) => {
     useEffect(() => {
         // send API request with submittedData
         console.log("form values", submittedData);
+        switch (type) {
+            case "signUp":
+                registerUser(submittedData);
+                // user registered successfully ? -> should i direct him to loginPage or log him in auto?
+                break;
+            case "login":
+                const user = logInUser(
+                    submittedData.username,
+                    submittedData.password
+                );
+                user ? logIn() : null;
+                break;
+            default:
+                break;
+        }
     }, [submittedData]);
 
     const handleFormSubmit = (e) => {
