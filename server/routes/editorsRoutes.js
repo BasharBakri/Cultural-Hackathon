@@ -1,17 +1,21 @@
 import express from "express";
 
+import { getAllEditors, signupEditor, loginEditor } from '../controllers/editorControllers';
+
 const editorsRouter = express.Router();
 
 editorsRouter
   .route("/")
-  // .get(getEditors)
-  // .post(createEditor)
-  // .delete(deleteEditor);
+  .get(getAllEditors)
+  .post(signupEditor);
+// .delete(deleteEditor);
 
 editorsRouter
   .route("/:id")
-  // .get(getEditor)
-  // .put(updateEditor)
-  // .delete(deleteEditor);
+  .get(loginEditor);
+// .put(updateEditor)
+// .delete(deleteEditor);
 
 export default editorsRouter;
+
+
