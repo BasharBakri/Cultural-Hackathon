@@ -19,6 +19,7 @@ node_modules
 *.ntvs*
 *.njsproj
 *.sln
+.history
 
 # Temporary files
 *.sw?
@@ -29,6 +30,9 @@ node_modules
 /dist
 /dist-ssr
 .eslintcache
+
+# Configuration
+.prettierrc
 
 # Configuration
 .prettierrc
