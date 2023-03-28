@@ -1,5 +1,6 @@
 import Article from "../models/Article.js";
 import performScraping from "../scrapers/scraper1.js";
+import scraperFilter from "../utils/scraperFilter.js";
 
 // Admin create one Article
 //  @route POST news/api/articles
@@ -27,14 +28,16 @@ const postManyArticles = async (req, res, next) => {
     const scrapedArticles = await performScraping();
 
     for (const article of scrapedArticles) {
-      const newArticle = await Article.create(article);
-      createdArticles.push(newArticle);
-    }
+      if (scraperFilter(article)) {
+        const newArticle = await Article.create(article);
+        createdArticles.push(newArticle);
+      }
 
-    res.status(201).json({
-      success: true,
-      data: createdArticles,
-    });
+      res.status(201).json({
+        success: true,
+        data: createdArticles,
+      });
+    }
   } catch (error) {
     next(error);
   }
