@@ -28,7 +28,7 @@ const performScraping = async () => {
     const imageURL = $(el).find(".media").children().children().attr("src");
     const imageDesc = $(el).find(".media").children().children().attr("alt");
 
-    if (!title || !desc || !articleURL) {
+    if (title && desc && articleURL) {
       const article = {
         websiteName: websiteName,
         articleURL: articleURL,
@@ -42,6 +42,7 @@ const performScraping = async () => {
       articles.push(article);
     }
   });
+  // console.log(articles.length);
   return articles;
 };
 
