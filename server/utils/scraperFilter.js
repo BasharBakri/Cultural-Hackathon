@@ -12,6 +12,8 @@ const positiveWords = [
   "reconciliation",
   "compromise",
   "mutual",
+  "love",
+  "cooperation",
   "shared",
   "collective",
   "community",
@@ -160,6 +162,10 @@ const cultureWords = [
   "westbank",
   "west bank",
 ];
+const test = {
+  title: "gaza",
+  description: "love",
+};
 
 const scraperFilter = (scrapedArticle) => {
   for (const positiveWord of positiveWords) {
@@ -171,12 +177,12 @@ const scraperFilter = (scrapedArticle) => {
         if (
           scrapedArticle.title.toLowerCase().includes(cultureWord) ||
           scrapedArticle.description.toLowerCase().includes(cultureWord)
-        ) {
+        )
           return true;
-        } else return false;
       }
     }
   }
+  return false;
 };
 
 export default scraperFilter;
