@@ -1,13 +1,13 @@
 import express from "express";
-import {getAllArticles, getOneArticle, postOneArticle, updateOneArticle, deleteOneArticle} from '../controllers/articleControllers.js'
+import {getAllArticles, getOneArticle, updateOneArticle, deleteOneArticle, postManyArticles, deleteManyArticles} from '../controllers/articleControllers.js'
 
 const articlesRouter = express.Router();
 
 articlesRouter
   .route("/")
   .get(getAllArticles)
-  .post(postOneArticle)
-  // .delete(deleteArticles);
+  .delete(deleteManyArticles)
+  .post(postManyArticles);
 
 articlesRouter
   .route("/:id")
