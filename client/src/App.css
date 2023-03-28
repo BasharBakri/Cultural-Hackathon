@@ -28,18 +28,21 @@ header nav{
   gap: 20px;
   position: relative;
 }
+
 .home .articles{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   width: 80%;
 }
+
 .home .articles .article{
   background-color:  var(--back);
   border-radius: 10px;
   width: 100%;
   display: flex;
 }
+
 .home .articles .article .image{
 flex: 3;
 background: white center;
