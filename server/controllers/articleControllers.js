@@ -6,7 +6,7 @@ import Article from "./models/Article.js";
 // Admin create one Article
 //  @route POST news/api/articles
 //  @access Public
-// Info: header, pictureURL, Description, href, author, websiteName, id
+// Info: header, pictureURL, Description, href, author, websiteName, id, isShown, category
 
 const postOneArticle = async (req, res, next) => {
   try {
@@ -25,7 +25,7 @@ const postOneArticle = async (req, res, next) => {
 // Get all articles
 //  @route GET news/api/articles
 //  @access Public
-// Info: header, pictureURL, Description, href, author, websiteName, id
+// Info: header, pictureURL, Description, href, author, websiteName, id, isShown, category
 
 
 const getAllArticles = async (req, res, next) => {
@@ -45,7 +45,7 @@ const getAllArticles = async (req, res, next) => {
 // view single article
 //  @route GET news/api/articles/:id
 //  @access Public
-// Info: header, pictureURL, Description, href, author, websiteName, id
+// Info: header, pictureURL, Description, href, author, websiteName, id, isShown, category
 
 const getOneArticle = async (req, res, next) => {
 
@@ -68,7 +68,7 @@ const getOneArticle = async (req, res, next) => {
 // update one article
 //  @route PUT news/api/articles/:id/update
 //  @access Private
-// Info: header, pictureURL, Description, href, author, websiteName, id
+// Info: header, pictureURL, Description, href, author, websiteName, id, isShown, category
 
 
 const updateOneArticle = async (req, res, next) => {
