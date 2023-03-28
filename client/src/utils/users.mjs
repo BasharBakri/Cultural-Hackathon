@@ -1,7 +1,5 @@
 //API requests
 import axios from 'axios';
-// import USERS_URL from './constants'
-
 const USERS_URL = 'http://localhost:5000';
 
 export const registerUser = async (submittedData) => {
