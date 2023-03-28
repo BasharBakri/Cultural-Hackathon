@@ -52,7 +52,7 @@ export const getArticles= async(cat)=>{
              res(articles.filter(f=>f.category===cat))
              else
              res(articles)
-         }, 5000);
+         }, 2000);
      })
 }
 
@@ -62,6 +62,6 @@ export const getCategories=()=>{
             const cats=articles.map((a)=>a.category)
             debugger
             res(cats)
-         }, 5000);
+         }, 2000);
      })
 }
