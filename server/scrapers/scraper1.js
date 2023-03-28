@@ -1,6 +1,5 @@
 import axios from "axios";
 import cheerio from "cheerio";
-import { splitVendorChunk } from "vite";
 import { TIMES_OF_ISRAEL } from "./constants.js";
 const websiteName = "Times of Israel";
 
@@ -29,7 +28,7 @@ const performScraping = async () => {
     const imageURL = $(el).find(".media").children().children().attr("src");
     const imageDesc = $(el).find(".media").children().children().attr("alt");
 
-    if (title && desc && articleURL) {
+    if (!title || !desc || !articleURL) {
       const article = {
         websiteName: websiteName,
         articleURL: articleURL,
@@ -43,8 +42,7 @@ const performScraping = async () => {
       articles.push(article);
     }
   });
-
-  console.log("articles", articles);
+  return articles;
 };
 
 performScraping();
