@@ -3,10 +3,12 @@
   margin: auto;
   padding: 2rem;
   text-align: center;
+  position: relative;
 }
 
+
 header{
-  background: rgb(136, 19, 19);
+  background: var(--back);
   font-size: 30px;
   display: flex;
   padding: 10px;
@@ -16,6 +18,48 @@ header{
 header nav{
   display: flex;
   gap: 20px;
+}
+.main{
+  margin-top: 20px;
+}
+
+.home{
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+.home .articles{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 80%;
+}
+.home .articles .article{
+  background-color:  var(--back);
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+}
+.home .articles .article .image{
+flex: 3;
+background: white center;
+background-size: cover;
+}
+.home .articles .article .detials{
+  flex: 4;
+}
+.home .cats-filter{
+  background-color:  var(--back);
+  position: sticky;
+  top: 0;
+  height: 500px;
+  border-radius: 10px;
+  width: 20%;
+}
+.home .cats-filter .topics{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 /* 
 .logo {
