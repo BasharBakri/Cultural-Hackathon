@@ -1,9 +1,6 @@
 
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { createContext, useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Root";
 import Home from "./pages/Home";
@@ -23,27 +20,21 @@ function App() {
       children:[
         {
             path: "/",
-            element: <Root />,
-            children: [
-                {
-                    path: "/",
-                    element: <Home />,
-                },
-                {
-                    path: "/admin",
-                    element: <Admin />,
-                },
-                {
-                    path: "/signup",
-                    element: <SignUp />,
-                },
-                {
-                    path: "/login",
-                    element: <Login />,
-                },
-            ],
+            element: <Home />,
         },
-    ]);
+        {
+            path: "/admin",
+            element: <Admin />,
+        },
+        {
+            path: "/signup",
+            element: <SignUp />,
+        },
+        {
+            path: "/login",
+            element: <Login />,
+        },
+    ]}]);
   return (
     <div className="App">
         <AppContext.Provider value={{
