@@ -1,29 +1,32 @@
 import mongoose from "mongoose";
 
-
-const ArticleSchema = new mongoose.Schema({
-  header: {
-    type: String,
-    required: [true, 'Please add a title'],
-    // unique: true,
-    trim: true,
+const ArticleSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "Please add a title"],
+      trim: true,
+    },
+    imageUrl: String,
+    author: {
+      type: String,
+      trim: true,
+    },
+    description: String,
+    articleURL: String,
+    date: String,
+    websiteName: String,
+    category: String,
+    isInHomePage: {
+      type: Boolean,
+      default: false,
+    },
+    slug: String,
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
-  picture: String,
-  description: String,
-  link: String,
-  date: String,
-  websitename: String,
-  category: String,
-  isInHomePage: {
-    type: Boolean,
-    default: false
-  },
-  slug: String,
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-},
   {
     toJSON: {
       virtuals: true,
