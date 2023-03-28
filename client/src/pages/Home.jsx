@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../App';
 import Article from '../components/Article';
+import Articles from '../components/Articles';
 import { getArticles,getCategories } from '../utils/articles.mjs';
 
 function Home() {
     const appContext=useContext(AppContext)
     const [articles,setArticles]=useState([])
     const [cats,setCats]=useState([])
+
     const refreshArticles=(cat)=>{
         appContext.loading.play()
        getArticles(cat).then((data)=>{
@@ -14,6 +16,7 @@ function Home() {
         appContext.loading.pause()
        })
     }
+
     useEffect(()=>{
         refreshArticles()
         getCategories().then((data)=>setCats(data))
@@ -21,13 +24,7 @@ function Home() {
       
   return (
     <div className="home">
-      <div className="articles">
-      {
-        articles.map((a,i)=>{
-            return <Article key={i} article={a}/>
-        })
-      }
-      </div>
+      <Articles articles={articles}/>
       <div className="cats-filter">
         <div className="title">
         <h2>Topics</h2>
