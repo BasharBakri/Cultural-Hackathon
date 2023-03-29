@@ -2,13 +2,12 @@ import { useState } from "react";
 import { GrView } from "react-icons/gr";
 export default function CatsFilter({ cats, refreshArticles }) {
   const [showCats, setShowCats] = useState(false);
-
   function toggleShowCats() {
     setShowCats(!showCats);
   }
 
   function onSelectCat(c) {
-    refreshArticles(c);
+    refreshArticles(c)
     toggleShowCats();
   }
 
@@ -26,8 +25,8 @@ export default function CatsFilter({ cats, refreshArticles }) {
         </button>
         {cats.map((c, i) => {
           return (
-            <button onClick={() => onSelectCat(c)}>
-              <h3 key={i}>{c}</h3>
+            <button key={i} onClick={() => onSelectCat(c)}>
+              <h3>{c}</h3>
             </button>
           );
         })}

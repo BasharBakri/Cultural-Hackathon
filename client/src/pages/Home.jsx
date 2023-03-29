@@ -13,20 +13,24 @@ function Home() {
     const refreshArticles=(cat)=>{
         appContext.loading.play()
        getSelectedArticles(cat).then((data)=>{
-        setArticles(data)
+        if(cat)
+        setArticles(data.filter(f=>f.category===cat))
+        else
+        setArticles(data.filter(f=>f.isInHomePage))
         appContext.loading.pause()
        })
     }
 
+
     useEffect(()=>{
         refreshArticles()
-        getCategories().then((data)=>setCats(data))
+        getCategories().then((data)=>{setCats(data)})
     },[])
       
   return (
     <div className="home">
       <Articles articles={articles}/>
-      <CatsFilter cats={cats} refreshArticles={refreshArticles}/>
+      <CatsFilter cats={cats} refreshArticles={(cat)=>refreshArticles(cat)}/>
     </div>
   )
 }
