@@ -1,12 +1,12 @@
 import React from 'react'
 import Article from './Article'
 
-function Articles({articles}) {
+function Articles({articles,isAdmin}) {
   return (
     <div className="articles">
       {
         articles.map((a,i)=>{
-            return <Article key={i} article={a}/>
+            return <Article isAdmin={isAdmin} key={i} article={a}/>
         })
       }
       </div>
