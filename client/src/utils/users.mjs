@@ -1,6 +1,6 @@
 //API requests
 import axios from 'axios';
-const USERS_URL = 'http://localhost:5000';
+const USERS_URL = 'https://hackathon.cyclic.app/api/v1/news/editors';
 
 export const registerUser = async (submittedData) => {
     try {
@@ -15,20 +15,23 @@ export const registerUser = async (submittedData) => {
 export const getUsers = async () => {
     try {
         const response = await axios.get(USERS_URL);
-        console.log('getUsers response.data');
-        return response.data;
+        return response.data.data;
     } catch (error) {
         console.error('Get users error', error);
         throw new Error('API ERROR MSG');
     }
 }
 
-export const logInUser = async (username, password) => {
+export const logInUser = async (email, password) => {
     try {
-        const response = await axios.get(USERS_URL);
-        const user = response.data
-            .find((user) => user.username === username && user.password === password);
-        console.log('login response.data', response.data);
+
+        const users = await getUsers();
+        const userData = users.find((user) => user.email === email && user.password === password);
+        const userId = userData.id;
+        const response = await axios.post(`${USERS_URL}/${userId}`, {
+            email: email,
+            password: password
+        });
         return response.data;
     } catch (error) {
         console.error('Login error', error);
