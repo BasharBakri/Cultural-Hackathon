@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { AppContext } from '../App';
+import { AppContext } from "../contexts/AppContext";
 import Article from '../components/Article';
 import Articles from '../components/Articles';
-import { getArticles,getCategories } from '../utils/articles.mjs';
+import CatsFilter from '../components/CatsFilter';
+import { getCategories, getSelectedArticles } from '../utils/articles.mjs';
 
 function Home() {
     const appContext=useContext(AppContext)
@@ -11,7 +12,7 @@ function Home() {
 
     const refreshArticles=(cat)=>{
         appContext.loading.play()
-       getArticles(cat).then((data)=>{
+       getSelectedArticles(cat).then((data)=>{
         setArticles(data)
         appContext.loading.pause()
        })
@@ -25,19 +26,7 @@ function Home() {
   return (
     <div className="home">
       <Articles articles={articles}/>
-      <div className="cats-filter">
-        <div className="title">
-        <h2>Topics</h2>
-        </div>
-        <div className="topics">
-        <button onClick={()=>refreshArticles()}><h3>Show All</h3></button>
-        {
-            cats.map((c,i)=>{
-                return <button onClick={()=>refreshArticles(c)}><h3 key={i}>{c}</h3></button>
-            })
-        }
-        </div>
-      </div>
+      <CatsFilter cats={cats} refreshArticles={refreshArticles}/>
     </div>
   )
 }
