@@ -1,4 +1,3 @@
-import { createContext, useState } from "react";
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Root";
@@ -6,54 +5,43 @@ import Home from "./pages/Home";
 import Admin from "./pages/admin";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import Loading from "./components/loading/Loading";
 import LoginProvider from "./contexts/LoginContext";
-
-export const AppContext = createContext();
+import AppProvider from "./contexts/AppContext";
 
 function App() {
-    const [playLoading, setPlayLoading] = useState(false);
-    const router = new createBrowserRouter([
+  const router = new createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      children: [
         {
-            path: "/",
-            element: <Root />,
-            children: [
-                {
-                    path: "/",
-                    element: <Home />,
-                },
-                {
-                    path: "/admin",
-                    element: <Admin />,
-                },
-                {
-                    path: "/signup",
-                    element: <SignUp />,
-                },
-                {
-                    path: "/login",
-                    element: <Login />,
-                },
-            ],
+          path: "/",
+          element: <Home />,
         },
-    ]);
-    return (
-        <div className="App">
-            <AppContext.Provider
-                value={{
-                    loading: {
-                        play: () => setPlayLoading(true),
-                        pause: () => setPlayLoading(false),
-                    },
-                }}
-            >
-                {playLoading && <Loading />}
-                <LoginProvider>
-                    <RouterProvider router={router} />
-                </LoginProvider>
-            </AppContext.Provider>
-        </div>
-    );
+        {
+          path: "/admin",
+          element: <Admin />,
+        },
+        {
+          path: "/signup",
+          element: <SignUp />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+      ],
+    },
+  ]);
+  return (
+    <div className="App">
+      <AppProvider>
+        <LoginProvider>
+          <RouterProvider router={router} />
+        </LoginProvider>
+      </AppProvider>
+    </div>
+  );
 }
 
 export default App;
