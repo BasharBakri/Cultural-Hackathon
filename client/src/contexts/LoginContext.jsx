@@ -21,11 +21,16 @@ const LoginProvider = ({ children }) => {
         localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
     }, [isLoggedIn]);
 
-    const logIn = () => setIsLoggedIn(true);
+    const logIn = async (userApiToken) => {
+        setIsLoggedIn(true);
+        const userToken = await userApiToken;
+        localStorage.setItem("userToken", JSON.stringify(await userToken));
+    };
 
     const logOut = () => {
         isAdmin ? setIsAdmin(false) : setIsLoggedIn(false);
         localStorage.removeItem("isLoggedIn"); // remove isLoggedIn from localStorage
+        localStorage.removeItem("userToken");
     };
 
     return (

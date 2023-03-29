@@ -24,11 +24,12 @@ const Form = ({ type }) => {
                 // user registered successfully ? -> should i direct him to loginPage or log him in auto?
                 break;
             case "login":
-                const user = logInUser(
-                    submittedData.username,
+                console.log("email", email);
+                const userToken = logInUser(
+                    submittedData.email,
                     submittedData.password
                 );
-                user ? logIn() : null;
+                userToken ? logIn(userToken) : null;
                 break;
             default:
                 break;
@@ -38,7 +39,7 @@ const Form = ({ type }) => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const userData = {
-            userName: username,
+            email: email,
             password: password,
         };
         if (type === "signUp") {
@@ -74,10 +75,10 @@ const Form = ({ type }) => {
                 </>
             )}
             <input
-                type="text"
-                placeholder="User Name"
-                value={username}
-                onChange={setUsername}
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={setEmail}
             />
             <input
                 type="password"
